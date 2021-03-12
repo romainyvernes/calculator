@@ -1,34 +1,45 @@
+body {
+    background-color: palevioletred;
+}
+
 #calc-container {
     width: 300px;
-    height: 450px;
-    margin: 0 auto;
+    height: 500px;
+    margin: 5vh auto;
     display: grid;
     grid-template-rows: 25% 75%;
     border-radius: 10px;
-    background-color: black;
+    background-color: rgb(19, 19, 19);
+    box-sizing: border-box;
+    box-shadow: 0 0 3px 1px black;
 }
 
 #display {
     border-radius: 15px;
-    margin: 10px;
+    margin: 13px;
     background-color: grey;
     box-sizing: border-box;
-    height: 85%;
+    height: 100px;
     color: white;
     text-align: right;
-    padding: 45px 13px 5px 0;
+    padding: 45px 10px 5px 0;
     font-size: 35px;
     font-family: 'Rubik', sans-serif;
+    max-width: 274px;
+    overflow-wrap: break-word;
+    box-shadow: 0 0 3px .5px lightgrey;
 }
 
 #pad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 70px);
     justify-content: center;
     align-items: center;
-    margin: 7px;
+    margin: 10px;
     margin-bottom: 15px;
+    height: 350px;
+    box-sizing: border-box;
 }
 
 .key {
@@ -37,8 +48,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    height: 55px;
-    width: 55px;
+    height: 85%;
+    width: 85%;
     font-family: 'Rubik', sans-serif;
     font-size: 20px;
     background-color: grey;
@@ -46,10 +57,27 @@
     border: none;
     padding: 0;
     outline: none;
+    box-shadow: inset 0.5px 1px lightgrey;
+}
+
+.key:active {
+    transform: scale(0.95);
 }
 
 #all-clear, #zero {
     grid-column: 1 / 3;
-    width: 87%;
+    width: 93%;
     border-radius: 35px;
+}
+
+#all-clear {
+    background-color: rgb(139, 46, 46);
+}
+
+#divide, #multiply, #add, #subtract {
+    background-color: rgb(167, 115, 20);
+}
+
+#equal {
+    background-color: rgb(14, 97, 14);
 }

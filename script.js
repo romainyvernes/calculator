@@ -1,50 +1,66 @@
 function add(num1, num2) {
-    return num1 + num2;
+    let operation;
+    operation = num1 + num2;
+    return Math.round(operation * 10 ** 10) / 10 ** 10;
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    let operation;
+    operation = num1 - num2;
+    return Math.round(operation * 10 ** 10) / 10 ** 10;
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    let operation;
+    operation = num1 * num2;
+    return Math.round(operation * 10 ** 10) / 10 ** 10;
 }
 
 function divide(num1, num2) {
     if (num2 === 0) {
         return 'Error';
     }
+    let operation;
     if (num1 < 0) {
-        let operation = (num1 * -1) / num2;
-        return operation * -1;
+        operation = ((num1 * -1) / num2) * -1;
+    } else {
+        operation = num1 / num2;
     }
-    return num1 / num2;
+    return Math.round(operation * 10 ** 10) / 10 ** 10;
 }
 
 function operate(operator, num1, num2) {
+    let result;
+    
     switch (operator) {
         case '+':
-            return add(num1, num2).toString();
+            result = add(num1, num2);
+            break;
         case '-':
-            return subtract(num1, num2).toString();
+            result = subtract(num1, num2);
+            break;
         case 'x':
-            return multiply(num1, num2).toString();
+            result = multiply(num1, num2);
+            break;
         case '÷':
-            return divide(num1, num2).toString();
+            result = divide(num1, num2);
+            break;
     }
+
+    return result.toString();
 }
 
 function updateDisplay(container, keyValue) {
     let firstOperand;
     let secondOperand;
     let operator;
-    
+    // if full operation displayed, assign values for operate function
     if (/[0-9].+[+\-\÷x].+[0-9]$/.test(displayValue)) {
         operator = displayValue.match(/ [+\-\÷x] /).toString().trim();
         firstOperand = displayValue.split(` ${operator} `)[0];
         secondOperand = displayValue.split(` ${operator} `)[1];
     }
-    
+    // check for each input key's value to determine display
     if (/[0-9]/.test(keyValue)) {
         if (displayValue === '0') {
             displayValue = keyValue;
@@ -84,12 +100,26 @@ function updateDisplay(container, keyValue) {
     } else if (keyValue === 'C') {
         if (displayValue.length !== 1 && /[^a-z]$/.test(displayValue)) {
             displayValue = displayValue.slice(0, displayValue.length - 1);
+            while (/ $/.test(displayValue)) {
+                displayValue = displayValue.slice(0, displayValue.length - 1);
+            }
         } else {
             displayValue = '0';
         }
     } else if (keyValue === 'AC') {
         displayValue = '0';
     }
+    // if display longer than one line, enable two-line display
+    if (displayValue.length > 11) {
+        container.style.paddingTop = '10px';
+    } else {
+        container.style.paddingTop = '45px';
+    }
+    // limit display to 24 characters
+    if (displayValue.length > 24) {
+        displayValue = displayValue.slice(0, 24);
+    }
+
     container.textContent = displayValue;
 }
 
