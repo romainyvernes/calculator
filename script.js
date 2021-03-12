@@ -98,7 +98,7 @@ function updateDisplay(container, keyValue) {
             displayValue = operate(operator, +firstOperand, +secondOperand);
         }
     } else if (keyValue === 'C') {
-        if (displayValue.length !== 1 && /[^a-z]$/.test(displayValue)) {
+        if (displayValue.length !== 1 && /[^a-wy-z]$/.test(displayValue)) {
             displayValue = displayValue.slice(0, displayValue.length - 1);
             while (/ $/.test(displayValue)) {
                 displayValue = displayValue.slice(0, displayValue.length - 1);
@@ -155,8 +155,28 @@ for (let i = 0; i < KEYS.length; i++) {
     calcElement.textContent = KEYS[i].symbol;
     calcElement.addEventListener('click', e => {
         updateDisplay(display, e.target.value);
+        this.blur();
     });
     pad.appendChild(calcElement);
 }
+
+document.addEventListener('keydown', e => {
+    let key = e.key;
+    switch (key) {
+        case '*':
+            key = 'x';
+            break;
+        case '/':
+            key = '÷';
+            break;
+        case 'Backspace':
+            key = 'C';
+            break;
+        case 'Enter':
+            key = '=';
+            break;
+    }
+    updateDisplay(display, key);
+});
 
 display.textContent = displayValue;
