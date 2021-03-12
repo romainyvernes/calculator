@@ -117,7 +117,7 @@ function updateDisplay(container, keyValue) {
     }
     // limit display to 24 characters
     if (displayValue.length > 24) {
-        displayValue = displayValue.slice(0, 24);
+        displayValue = 'Too long';
     }
 
     container.textContent = displayValue;
