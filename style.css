@@ -12,6 +12,13 @@
     border-radius: 15px;
     margin: 10px;
     background-color: grey;
+    box-sizing: border-box;
+    height: 85%;
+    color: white;
+    text-align: right;
+    padding: 45px 13px 5px 0;
+    font-size: 35px;
+    font-family: 'Rubik', sans-serif;
 }
 
 #pad {
@@ -20,7 +27,8 @@
     grid-template-rows: repeat(5, 1fr);
     justify-content: center;
     align-items: center;
-    margin: 5px;
+    margin: 7px;
+    margin-bottom: 15px;
 }
 
 .key {
@@ -29,12 +37,15 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     font-family: 'Rubik', sans-serif;
     font-size: 20px;
     background-color: grey;
     color: white;
+    border: none;
+    padding: 0;
+    outline: none;
 }
 
 #all-clear, #zero {
